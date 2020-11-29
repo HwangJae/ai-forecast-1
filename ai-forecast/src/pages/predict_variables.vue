@@ -57,31 +57,31 @@
               <q-list>
                 <q-item clickable v-close-popup @click="bac_2l">
                   <q-item-section>
-                    <q-item-label>백산수 2L</q-item-label>                      <!-- 1 -->
+                    <q-item-label>생수 2L</q-item-label>                      <!-- 1 -->
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup @click="bac_500ml">
                   <q-item-section>
-                    <q-item-label>백산수 500ml</q-item-label>                   <!-- 2 -->
+                    <q-item-label>생수 500ml</q-item-label>                   <!-- 2 -->
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup @click="sin_ramyun">
                   <q-item-section>
-                    <q-item-label>신라면 멀티</q-item-label>                    <!-- 3 -->
+                    <q-item-label>라면A</q-item-label>                    <!-- 3 -->
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup @click="ansung_ramyun">
                   <q-item-section>
-                    <q-item-label>안성탕면 멀티</q-item-label>                  <!-- 4 -->
+                    <q-item-label>라면B</q-item-label>                  <!-- 4 -->
                   </q-item-section>
                 </q-item>
 
                 <q-item clickable v-close-popup @click="jin_ramyun">
                   <q-item-section>
-                    <q-item-label>진라면 멀티(순한맛)</q-item-label>            <!-- 5 -->
+                    <q-item-label>라면C</q-item-label>            <!-- 5 -->
                   </q-item-section>
                 </q-item>   
               </q-list>
@@ -132,13 +132,13 @@
           <div class="row no-wrap q-pa-md" >
             <div class="column">
               <div class="text-h6 q-mb-lg" >할인 요일 선택</div>
-              <q-toggle v-model="event_mon" label="월요일 할인" />
-              <q-toggle v-model="event_tue" label="화요일 할인" />
-              <q-toggle v-model="event_wen" label="수요일 할인" />
-              <q-toggle v-model="event_thu" label="목요일 할인" />
-              <q-toggle v-model="event_fri" label="금요일 할인" />
-              <q-toggle v-model="event_sat" label="토요일 할인" />
-              <q-toggle v-model="event_sun" label="일요일 할인" />
+              <q-toggle v-model="event_mon" label="월요일 할인" @input="event_toggle"/>
+              <q-toggle v-model="event_tue" label="화요일 할인" @input="event_toggle"/>
+              <q-toggle v-model="event_wen" label="수요일 할인" @input="event_toggle"/>
+              <q-toggle v-model="event_thu" label="목요일 할인" @input="event_toggle"/>
+              <q-toggle v-model="event_fri" label="금요일 할인" @input="event_toggle"/>
+              <q-toggle v-model="event_sat" label="토요일 할인" @input="event_toggle"/>
+              <q-toggle v-model="event_sun" label="일요일 할인" @input="event_toggle"/>
 
             </div>
 
@@ -146,7 +146,7 @@
 
           <div class="row q-pa-sm justify-end">
       
-            <q-btn label="적용" color="red-10" size="12px" style="width : 95px" @click="toggle_bus1"/>
+            <!-- <q-btn label="적용" color="red-10" size="12px" style="width : 95px" @click="toggle_bus1"/> -->
 
           </div>
         </q-btn-dropdown>
@@ -169,13 +169,14 @@
           <div class="row no-wrap q-pa-md" >
             <div class="column">
               <div class="text-h6 q-mb-lg" >출하 요일 선택</div>
-              <q-toggle v-model="so_event_mon" label="월요일" />
-              <q-toggle v-model="so_event_tue" label="화요일" />
-              <q-toggle v-model="so_event_wen" label="수요일" />
-              <q-toggle v-model="so_event_thu" label="목요일" />
-              <q-toggle v-model="so_event_fri" label="금요일" />
-              <q-toggle v-model="so_event_sat" label="토요일" />
-              <q-toggle v-model="so_event_sun" label="일요일" />
+              <q-toggle v-model="so_event_mon" label="월요일" @input="so_toggle1"/>
+              <!-- <q-toggle v-model="so_event_mon" label="월요일" /> -->
+              <q-toggle v-model="so_event_tue" label="화요일" @input="so_toggle1"/>
+              <q-toggle v-model="so_event_wen" label="수요일" @input="so_toggle1"/>
+              <q-toggle v-model="so_event_thu" label="목요일" @input="so_toggle1"/>
+              <q-toggle v-model="so_event_fri" label="금요일" @input="so_toggle1"/>
+              <q-toggle v-model="so_event_sat" label="토요일" @input="so_toggle1"/>
+              <q-toggle v-model="so_event_sun" label="일요일" @input="so_toggle1"/>
 
             </div>
 
@@ -183,20 +184,15 @@
 
           <div class="row q-pa-sm justify-end">
       
-            <q-btn label="적용" color="red-10" size="12px" style="width : 90px" @click="toggle_bus2"/>
+            <!-- <q-btn label="적용" color="red-10" size="12px" style="width : 90px" @click="toggle_bus2"/> -->
 
           </div>
 
         </q-btn-dropdown>
       </div>
       <!-- /div_26 -->
-
-
-      
-      
     </div>
     <!-- /div 1 -->
-
 
 <!-- div_1 === div_3 -->
 
@@ -223,7 +219,7 @@
         <q-date 
           v-model="model1" 
           :options="optionsFn"
-          mask="YYYY-MM-DD" />
+          mask="YYYY-MM-DD" @click="clickDate"/>
         </div>               
         <!-- /div 4 -->
         
@@ -272,6 +268,9 @@
       </div>
       <!-- /div_5 -->
         <!-- div21 -->
+
+
+
         <div class="row q-pa-sm">
           <q-btn color="primary" text-color="white" size='15px' style="width : 140px" label="예측 결과보기" to="/Predict"/>
         </div>
@@ -282,12 +281,15 @@
     <!-- /div_30 -->
     </div>
     <div class="column q-pa-md"></div>
-    
+      <!-- <task proptest = 'test111'></task> -->
+    <!-- <task> v-for=" (task) in tasks"      </task> -->
   <div class="q-pa-md"></div>
 
 
     
   </main>
+  
+  
 </template>
 
 
@@ -298,6 +300,7 @@ import BarChart from '../components/charts/BarChart'
 // import Predict from '../pages/Predict'
 import axios from "axios";
 import EventBus from '../components/eventBus.js';
+import Predict from '../pages/Predict.vue';
 
 // document.onclick = processClick;
 
@@ -307,11 +310,29 @@ import EventBus from '../components/eventBus.js';
 
 
 export default {
+  
+  // name: 'Child',
+  // components: {
+  //   ChildAndChild
+  // },
 
 
 
   data () {
     return {
+
+      tasks : [
+        {
+          name : 'Go to shop',
+          dudate : '2019/05/12',
+          duetime: '18:00'
+        },
+        {
+          name : 'test2',
+          dudate : '2020/01/23',
+          dutime : '19:00'
+        }
+      ],
 
       model1: '2019-12-01',
       // model2: '03-21-2019',
@@ -344,11 +365,21 @@ export default {
 
   },
 
+  components : {
+    'task' : Predict
+  },
+
   methods: {
 
-    processClick () {
-      console.log('>>>>>>>>>mouse_clicked')
+    clickDate () {
+      EventBus.$emit("Date_bus", this.model1)
+
     },
+    // so_toggle1 () {
+    //   EventBus.$emit("special_order_bus", this.so_event_mon)
+
+    // },
+
 
     bac_2l () {
       console.log('Clicked item')
@@ -382,14 +413,14 @@ export default {
     bac_2l () {
       console.log('Clicked item')
       localStorage.item_1 = '백산수2.0L';
-      const item_1 = '백산수2.0L';
+      const item_1 = '생수 2.0L';
       EventBus.$emit("product_bus", item_1);
     },
 
     bac_500ml () {
       console.log('Clicked item')
       localStorage.item_1 = '백산수500ml';
-      const item_1 = '백산수500ml';
+      const item_1 = '생수 500ml';
       
       EventBus.$emit("product_bus", item_1);
     },
@@ -397,7 +428,7 @@ export default {
     sin_ramyun () {
       console.log('Clicked item')
       localStorage.item_1 = '신라면멀티';
-      const item_1 = '신라면멀티';
+      const item_1 = '라면A';
       
       EventBus.$emit("product_bus", item_1);
     },
@@ -405,7 +436,7 @@ export default {
     ansung_ramyun () {
       console.log('Clicked item')
       localStorage.item_1 = '안성탕면멀티';
-      const item_1 = '안성탕면멀티';
+      const item_1 = '라면B';
       
       EventBus.$emit("product_bus", item_1);
     },
@@ -413,7 +444,7 @@ export default {
     jin_ramyun () {
       console.log('Clicked item')
       localStorage.item_1 = '진라면멀티(순한맛)';
-      const item_1 = '진라면멀티(순한맛)';
+      const item_1 = '라면C';
       
       EventBus.$emit("product_bus", item_1);
 
@@ -451,12 +482,7 @@ export default {
     },
 
     
-
-    
-
-
-
-    toggle_bus1 () {
+    event_toggle () {
       console.log('clicked toggle special_order')
       
 
@@ -514,9 +540,9 @@ export default {
     },
 
 
-
-    toggle_bus2 () {
+    so_toggle1 () {
       console.log('clicked toggle special_order')
+      // console.log('boolean>>>>', this.so_event_mon)
       
 
       localStorage.so_event_mon=this.so_event_mon;
@@ -567,121 +593,133 @@ export default {
       };
       this.so_days.pop();
       EventBus.$emit("special_order_bus", this.so_days);
-      
-
+      // console.log('so_days>>>>>>', this.so_days)
     },
+
 
     showCustom () {
 
-      EventBus.$emit("Date_bus", this.model1)
-      localStorage.event_mon=this.event_mon;
-      localStorage.event_tue=this.event_tue;
-      localStorage.event_wen=this.event_wen;
-      localStorage.event_thu=this.event_thu;
-      localStorage.event_fri=this.event_fri;
-      localStorage.event_sat=this.event_sat;
-      localStorage.event_sun=this.event_sun;
-
-      localStorage.so_event_mon=this.so_event_mon;
-      localStorage.so_event_tue=this.so_event_tue;
-      localStorage.so_event_wen=this.so_event_wen;
-      localStorage.so_event_thu=this.so_event_thu;
-      localStorage.so_event_fri=this.so_event_fri;
-      localStorage.so_event_sat=this.so_event_sat;
-      localStorage.so_event_sun=this.so_event_sun;
+      console.log('clicked predict>>>>>', this.model1);
+      localStorage.removeItem('day1');
 
 
-      this.edays=[]
+      this.test_day=localStorage.getItem('event_mon')
+      console.log('step0>>>>>>>', this.test_day)
 
-        if (this.event_mon === true) {
-        this.wday1 = "월요일";
-        this.edays.push(this.wday1)
+      this.edays1=[]
+
+      console.log('stpe1>>>>>>')
+      if (this.test_day === true) {
+      this.wday1 = "월요일"
+      console.log('step1-1>>>>>>')
+  
       };
-        if (this.event_tue === true) {
+
+      console.log('stpe2>>>>>>');
+        if (localStorage.event_tue === true) {
         this.wday2 = "화요일"
         this.edays.push(this.wday2)
       };
-        if (this.event_wen === true) {
+
+      console.log('stpe3>>>>>>');
+        if (localStorage.event_wen === true) {
         this.wday3 = "수요일"
-        this.edays.push(this.wday3)
+        // this.edays.push(this.wday3)
       };
-        if (this.event_thu === true) {
+
+      console.log('stpe4>>>>>>');
+        if (localStorage.event_thu === true) {
         this.wday4 = "목요일"
-        this.edays.push(this.wday4)
+        // this.edays.push(this.wday4)
       };
-        if (this.event_fri === true) {
+
+      console.log('stpe5>>>>>>');
+        if (localStorage.event_fri === true) {
         this.wday5 = "금요일"
-        this.edays.push(this.wday5)
+        // this.edays.push(this.wday5)
       };
-        if (this.event_sat === true) {
+
+      console.log('stpe6>>>>>>');
+        if (localStorage.event_sat === true) {
         this.wday6 = "토요일"
-        this.edays.push(this.wday6)
+        // this.edays.push(this.wday6)
       };
-        if (this.event_sun === true) {
+
+      console.log('stpe7>>>>>>');
+        if (localStorage.event_sun === true) {
         this.wday7 = "일요일"
-        this.edays.push(this.wday7)
+        // this.edays.push(this.wday7)
       };
+      // console.log('edays>>>>>>>', this.wday1)
 
       
-      // if (this.wday1 ==='월요일') { this.edays.push(this.wday1)     
-      // };
-      //   if (this.wday2 ==='화요일') { this.edays.push(this.wday2)
-      // };
-      //   if (this.wday3 ==='수요일') { this.edays.push(this.wday3)
-      // };
-      //   if (this.wday4 ==='목요일') { this.edays.push(this.wday4)
-      // };
-      //   if (this.wday5 ==='금요일') { this.edays.push(this.wday5)
-      // };
-      //   if (this.wday6 ==='토요일') { this.edays.push(this.wday6)
-      // };
-      //   if (this.wday7 ==='일요일') { this.edays.push(this.wday7)
-      // };
-        localStorage.edate=this.edays;
-
+        if(this.wday1 ==='월요일') { this.edays1.push(this.wday1)     
+      };
+        if (this.wday2 ==='화요일') { this.edays1.push(this.wday2)
+      };
+        if (this.wday3 ==='수요일') { this.edays1.push(this.wday3)
+      };
+        if (this.wday4 ==='목요일') { this.edays1.push(this.wday4)
+      };
+        if (this.wday5 ==='금요일') { this.edays1.push(this.wday5)
+      };
+        if (this.wday6 ==='토요일') { this.edays1.push(this.wday6)
+      };
+        if (this.wday7 ==='일요일') { this.edays1.push(this.wday7)
+      };
+        localStorage.edate=this.edays1;
+        console.log('edays>>>>>>', this.edays1)
+        
 
         // 대량주문 정보 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
       this.so_days=[]
-        if (this.so_event_mon === true) {
+        if (localStorage.so_event_mon === true) {
         this.so_day1 = "월요일";
         this.so_days.push(this.so_day1)
       };
-        if (this.so_event_tue === true) {
-        this.so_day2 = "화요일"
+        if (localStorage.so_event_tue === true) {
+        this.so_day2 = "화요일";
+        this.so_days.push(this.so_day2)
       };
-        if (this.so_event_wen === true) {
+        if (localStorage.so_event_wen === true) {
         this.so_day3 = "수요일"
+        this.so_days.push(this.so_day3)
       };
-        if (this.so_event_thu === true) {
+        if (localStorage.so_event_thu === true) {
         this.so_day4 = "목요일"
+        this.so_days.push(this.so_day4)
       };
-        if (this.so_event_fri === true) {
+        if (localStorage.so_event_fri === true) {
         this.so_day5 = "금요일"
+        this.so_days.push(this.so_day5)
       };
-        if (this.so_event_sat === true) {
+        if (localStorage.so_event_sat === true) {
         this.so_day6 = "토요일"
+        this.so_days.push(this.so_day6)
       };
-        if (this.so_event_sun === true) {
+        if (localStorage.so_event_sun === true) {
         this.so_day7 = "일요일"
+        this.so_days.push(this.so_day7)
       };
+      localStorage.so_date=this.so_days;
 
       
       // if (this.wday1 ==='월요일') { this.edays.push(this.wday1)     
       // };
-        if (this.so_day2 ==='화요일') { this.so_days.push(this.so_day2)
-      };
-        if (this.so_day3 ==='수요일') { this.so_days.push(this.so_day3)
-      };
-        if (this.so_day4 ==='목요일') { this.so_days.push(this.so_day4)
-      };
-        if (this.so_day5 ==='금요일') { this.so_days.push(this.so_day5)
-      };
-        if (this.so_day6 ==='토요일') { this.so_days.push(this.so_day6)
-      };
-        if (this.so_day7 ==='일요일') { this.so_days.push(this.so_day7)
-      };
-        localStorage.so_date=this.so_days;
+      //   if (this.so_day2 ==='화요일') { this.so_days.push(this.so_day2)
+      // };
+      //   if (this.so_day3 ==='수요일') { this.so_days.push(this.so_day3)
+      // };
+      //   if (this.so_day4 ==='목요일') { this.so_days.push(this.so_day4)
+      // };
+      //   if (this.so_day5 ==='금요일') { this.so_days.push(this.so_day5)
+      // };
+      //   if (this.so_day6 ==='토요일') { this.so_days.push(this.so_day6)
+      // };
+      //   if (this.so_day7 ==='일요일') { this.so_days.push(this.so_day7)
+      // };
+        
 
 
 
@@ -770,7 +808,7 @@ export default {
       // we simulate some progress here...
       let percentage = 0
       const interval = setInterval(() => {
-        percentage = Math.min(100, percentage + Math.floor(Math.random() * 7))
+        percentage = Math.min(100, percentage + Math.floor(Math.random() * 5))
         // *22가 원본
 
         // we update the dialog
@@ -837,7 +875,6 @@ export default {
     // 여기서부터 트레이닝 버튼
     showCustomTraining () {
 
-
       localStorage.event_mon=this.event_mon;
       localStorage.event_tue=this.event_tue;
       localStorage.event_wen=this.event_wen;
@@ -853,7 +890,6 @@ export default {
       localStorage.so_event_fri=this.so_event_fri;
       localStorage.so_event_sat=this.so_event_sat;
       localStorage.so_event_sun=this.so_event_sun;
-
 
       this.edays=[]
 
@@ -924,9 +960,9 @@ export default {
         this.so_day7 = "일요일"
       };
 
-      
       // if (this.wday1 ==='월요일') { this.edays.push(this.wday1)     
       // };
+
         if (this.so_day2 ==='화요일') { this.so_days.push(this.so_day2)
       };
         if (this.so_day3 ==='수요일') { this.so_days.push(this.so_day3)
@@ -941,14 +977,8 @@ export default {
       };
         localStorage.so_date=this.so_days;
 
-
-
-
-
-        
 // 나중에 주석 해제 할 것
   
-
       const data = {
 
         // "for_return" : this.day1_2,
@@ -963,6 +993,7 @@ export default {
         // "event_info" : [localStorage.event_mon, localStorage.event_tue, localStorage.event_wen, localStorage.event_thu, 
         //                 localStorage.event_fri, localStorage.event_sat, localStorage.event_sun,],
         // "break_info" : this.break_info,
+
         "item_info" : localStorage.getItem('item_1'),
         "store_info" : localStorage.getItem('store_code'),
         "break_info" : localStorage.getItem('break_1')
@@ -1019,8 +1050,6 @@ export default {
           message: `${percentage}%`
         })
         
-
-
       //   if (!localStorage.day1) {
           // setTimeout(function() {
             
@@ -1034,7 +1063,8 @@ export default {
           setTimeout(function() {
             
           console.log("not arrived")}, 400);
-        } 
+        }
+
         else if (percentage === 100) {
           clearInterval(interval)
 

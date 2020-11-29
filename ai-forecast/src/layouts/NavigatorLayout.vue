@@ -1,3 +1,4 @@
+
 <template>
   <q-layout view="hHh LpR fff">
     <q-header bordered="bordered" class="bg-primary text-white" height-hint="98">
@@ -52,6 +53,7 @@
               label="예측결과 조회"
               to="/Predict"
             />
+            
             <br>
             <span 
               class="text-h6 text-dark"
@@ -143,6 +145,15 @@ import { LocalStorage } from "quasar";
 import Predict from '../pages/Predict.vue'
 import predict_variables from '../pages/predict_variables.vue'
 import EventBus from '../components/eventBus.js';
+import Vue from "vue";
+
+Vue.component('child', {
+  // props 정의
+  props: ['message'],
+  // 데이터와 마찬가지로 props는 템플릿 내부에서 사용할 수 있습니다
+  // data 속성에서 사용할 땐 vm => ({vm.message})로 사용할 수 있습니다.
+  template: '<span>{{ message }}</span>'
+})
 
 export default { 
     data () {
@@ -171,7 +182,7 @@ export default {
         NavigatorData: [
           {
             attribute: "기준일",
-            Value: '',
+            Value: '2019-12-01',
           },
           {
             attribute: "매장명",
@@ -244,7 +255,6 @@ export default {
         this.NavigatorData[5].Value = bus_special_order;
     });
 
-    
   },
 }
 </script>
@@ -279,41 +289,33 @@ export default {
 @font-face {
     font-family: 'Wemakeprice-Regular';
     src: url(../assets/Wemakeprice-Regular.ttf);
- 
 }
 
 .q-tab {
-
   font-size: 30px;
-  font-family: 'Wemakeprice-Regular';
+  font-family: 'Jua';
  
   line-height: 4px;
   font-weight: 100;
-
 }
 
 .text-h6 {
-  
   font-family: 'Wemakeprice-Regular';
- 
 }
 
 .text-left {
-  
   font-family: 'Jua';
-  font-size: 20px;
+  font-size: 15px;
   padding: 2px 2px;
- 
 }
 
 .q-btn {
   font-size: 34px;
 }
 
-.text-left td {
 
-  padding: 2px 16px;
-  background-color: inherit;
-
+.q-table tbody td {
+    font-size: 16px;
 }
+
 </style>

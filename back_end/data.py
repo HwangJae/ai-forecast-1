@@ -82,7 +82,7 @@ class prepareData:
 
         return x, x_1, y
 
-    def detect_outliers(df, n, features):
+    def detect_outliers(self, df, n, features):
         outlier_indices = []
         for col in features:
             Q1 = np.percentile(df[col], 25)
@@ -286,6 +286,13 @@ class prepareData:
 
         past = pd.read_csv(self.train, encoding='euc-kr', index_col=0)
 
+        if past.iloc[-1, 0] >= self.train_date:
+
+            past = past.loc[:past[past['date'] == self.train_date].index[0]]
+
+        else:
+            past = past
+
         future = self.merged_df
 
         future['sin_month'] = np.sin(2*np.pi*future.month/12)
@@ -325,6 +332,8 @@ class prepareData:
         df = df.drop(columns='date')
         df_train = df_train.drop(columns='date')
         df_test = df_test.drop(columns='date')
+
+        # print(df_test.tail(20))
 
         x_columns = ['year', 'month', 'day',
                      'weekday', 'weeknum', 'weekend', 'national_holiday',
@@ -393,7 +402,7 @@ class prepareData:
     def scaled_origin(self):
 
         df, df_train, df_test, sale_qty, x_columns, x_1_columns = self.sep_data2(
-            )
+        )
 
         x_df, x_df_1, y_df = self.sep_xy(
             df, x_columns, x_1_columns)
@@ -415,8 +424,7 @@ class prepareData:
 
         return x_scaler, x_1_scaler, y_scaler, column_num_x, column_num_x_1, x_columns, x_1_columns, sale_qty
 
-    def scaled_data(self,df_train):
-
+    def scaled_data(self, df_train):
 
         x_scaler, x_1_scaler, y_scaler, column_num_x, column_num_x_1, x_columns, x_1_columns, sale_qty = self.scaled_origin()
 

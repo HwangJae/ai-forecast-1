@@ -1,12 +1,13 @@
 <template>
   <main
     class="q-page q-pa-sm"
-    style="padding: 60px 3px 30px 3px; min-height: 500px;"
+    style="padding: 50px 3px 30px 3px; min-height: 500px;"
   >
 
     <div 
       class="row q-col-gutter-sm q-py-xl content-center items-center justify-evenly" 
-      style = "padding: 120px 3px 80px 3px;">
+      style="padding: 120px 3px 80px 3px;"
+    >
 
       <ul>
       <text-effect-1 ></text-effect-1>
@@ -48,8 +49,16 @@ export default {
 
 <style>
 
+@font-face {
+    font-family: 'Jua';
+    src: url(../assets/Jua-Regular.ttf);
+}
+
 .text-a {
-  display: block !important;
+  font-family: 'Jua';
+}
+
+.block {
   font-family: 'Jua';
 }
 
